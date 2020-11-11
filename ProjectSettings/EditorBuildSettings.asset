@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/ZoomTest.unity
+    guid: 62c7b9fdbf84a2b4e8b774f65f0f053a
   m_configObjects: {}

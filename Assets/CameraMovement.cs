@@ -14,6 +14,7 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
+        hitObjectPosition = startPosition;
     }
 
     private Vector3 moveTo;
