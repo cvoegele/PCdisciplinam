@@ -19,7 +19,7 @@ public class CameraMovement : MonoBehaviour
     }
 
     private Vector3 moveTo;
-    private bool zooming;
+    private bool zooming = false;
     private Vector3 hitObjectPosition;
 
     void Update()
@@ -28,11 +28,26 @@ public class CameraMovement : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            Debug.DrawRay(ray.origin,ray.direction, Color.magenta, 20);
+            Debug.DrawRay(ray.origin, ray.direction, Color.magenta, 20);
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.rigidbody != null)
                 {
+                    Debug.Log(hit.rigidbody.name);
+                    if (GameObject.FindWithTag(hit.rigidbody.name) != null)
+                    {
+                        Debug.Log("I'm in");
+                        Text label = GameObject.FindWithTag(hit.rigidbody.name).GetComponent<Text>();
+                        Debug.Log(label.enabled);
+                        if (zooming)
+                        {
+                            label.enabled = false;
+                        }
+                        else
+                        {
+                            label.enabled = true;
+                        }
+                    }
                     Vector3 newHitPosition = hit.rigidbody.position;
                     if (hitObjectPosition != newHitPosition)
                     {
@@ -43,7 +58,7 @@ public class CameraMovement : MonoBehaviour
                         moveTo = hitObjectPosition + direction;
                     }
                 }
-                
+
             }
             else
             {
@@ -55,6 +70,7 @@ public class CameraMovement : MonoBehaviour
 
         if (moveTo != Vector3.zero && Math.Abs((moveTo - transform.position).magnitude) > zoomRounding)
         {
+            zooming = true;
             Debug.Log($"we are zoomin");
             var moveThisFrame = (moveTo - transform.position) * Time.deltaTime;
             transform.position += moveThisFrame;
