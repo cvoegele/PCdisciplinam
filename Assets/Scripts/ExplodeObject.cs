@@ -25,7 +25,7 @@ public class ExplodeObject : MonoBehaviour
 
         newPosition = originalPosition;
     }
-
+    
     public Vector3 OriginalPosition => originalPosition;
 
     public void Expand(float f = 1f)

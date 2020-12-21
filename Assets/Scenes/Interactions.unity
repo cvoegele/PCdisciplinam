@@ -1148,7 +1148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDistance: 2
-  movementTime: 3
+  movementTime: 0.5
+  initialDestination: {x: 0, y: 0, z: 0}
   rotationSpeed: 1
 --- !u!81 &2111984675
 AudioListener:
