@@ -13,104 +13,153 @@ public class Selector : MonoBehaviour
 
     private Vector2 touch0Down = Vector2.zero;
     private Vector2 touch1Down = Vector2.zero;
-    private float previousAmount = 0;
+    private Vector2 expandTouchDown = Vector2.zero;
+    private float oldExpandDistance;
+    private float oldExpandDelta;
+    private Camera mainCamera;
 
 
     // Start is called before the first frame update
     public void Start()
     {
+        mainCamera = Camera.main;
         cameraMovement = GetComponentInChildren<CameraMovement>();
     }
 
     // Update is called once per frame
     public void Update()
     {
+
         if (Input.touchCount == 3)
         {
-            if (AllTouchesAreInPhase(TouchPhase.Ended))
-            {
-                DeSelect();
-                cameraMovement.ResetCamera();
-            }
+            DeSelect();
+            cameraMovement.ResetCamera();
         }
         //two finger movement
         else if (Input.touchCount == 2)
         {
-            var touch0 = Input.touches[0];
-            var touch1 = Input.touches[1];
-
-            if (AllTouchesAreInPhase(TouchPhase.Began))
-            {
-                touch0Down = touch0.position;
-                touch1Down = touch1.position;
-            }
-
-            if (AllTouchesAreInPhase(TouchPhase.Moved))
-            {
-                var downDelta = (touch0Down - touch1Down).magnitude;
-                var delta = (touch0.position - touch1.position).magnitude;
-
-                if (downDelta > delta)
-                {
-                    var amount = delta / downDelta;
-                    cameraMovement.Move(-amount);
-                }
-                else if (downDelta < delta)
-                {
-                    var amount = downDelta / delta;
-                    cameraMovement.Move(amount);
-                }
-                
-                touch0Down = touch0.position;
-                touch1Down = touch1.position;
-            }
+            TwoFingerZoom();
         }
-        else if (Input.GetMouseButtonDown(0))
+        else if (Input.touchCount == 1)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Debug.DrawRay(ray.origin, ray.direction, Color.magenta, 20);
-            if (Physics.Raycast(ray, out hit, LayerMask.GetMask("Hittable")))
+            var touch0 = Input.touches[0];
+
+            switch (touch0.phase)
             {
-                if (hit.rigidbody != null)
-                {
-                    //if nothing selected prior
-                    if (selection == null)
-                    {
-                        Select(hit.transform.gameObject);
-                    }
-                    //if already something selected
-                    else
-                    {
-                        //press same object again
-                        if (selection == hit.rigidbody.gameObject)
-                        {
-                            var position = hit.rigidbody.position;
-                            var newHitPosition = position;
+                case TouchPhase.Began:
+                case TouchPhase.Moved:
 
-                            cameraMovement.SetDestination(newHitPosition, true, true);
-                        }
-                        else
-                        {
-                            //press something else
-                            Select(hit.transform.gameObject);
-                        }
+                    if (selection.CompareTag("Expandable"))
+                    {
+                        FingerDragExpand();
                     }
-                }
+
+                    break;
+                case TouchPhase.Ended:
+                    RayCastSelection();
+                    break;
             }
-
-            //hit nothing
-            // else
-            // {
-            //     turnOffSelectionMaterial();
-            //     Debug.Log($"{selection}");
-            //     selection = null;
-            //     cameraMovement.ResetDestination();
-            // }
         }
     }
 
-    private bool AllTouchesAreInPhase(TouchPhase phase)
+    private void RayCastSelection()
+    {
+        RaycastHit hit;
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction, Color.magenta, 20);
+        if (Physics.Raycast(ray, out hit, LayerMask.GetMask("Hittable")))
+        {
+            if (hit.rigidbody != null)
+            {
+                //if nothing selected prior
+                if (selection == null)
+                {
+                    Select(hit.transform.gameObject);
+                }
+                //if already something selected
+                else
+                {
+                    //press same object again
+                    if (selection == hit.rigidbody.gameObject)
+                    {
+                        var position = hit.rigidbody.position;
+                        var newHitPosition = position;
+
+                        cameraMovement.SetDestination(newHitPosition, true, false);
+                    }
+                    else
+                    {
+                        //press something else
+                        Select(hit.transform.gameObject);
+                    }
+                }
+            }
+        }
+    }
+
+    private void TwoFingerZoom()
+    {
+        var touch0 = Input.touches[0];
+        var touch1 = Input.touches[1];
+
+        if (AllTouchesAreInPhase(TouchPhase.Began))
+        {
+            touch0Down = touch0.position;
+            touch1Down = touch1.position;
+        }
+
+        if (AllTouchesAreInPhase(TouchPhase.Moved))
+        {
+            var downDelta = (touch0Down - touch1Down).magnitude;
+            var delta = (touch0.position - touch1.position).magnitude;
+
+            if (downDelta > delta)
+            {
+                var amount = delta / downDelta;
+                cameraMovement.Move(-amount);
+            }
+            else if (downDelta < delta)
+            {
+                var amount = downDelta / delta;
+                cameraMovement.Move(amount);
+            }
+
+            touch0Down = touch0.position;
+            touch1Down = touch1.position;
+        }
+    }
+
+    private void FingerDragExpand()
+    {
+        var touch0 = Input.touches[0];
+
+        if (touch0.phase == TouchPhase.Began)
+        {
+            expandTouchDown = touch0.position;
+        }
+
+        if (touch0.phase == TouchPhase.Moved)
+        {
+            var explodeObject = selection.GetComponent<ExplodeObject>();
+            var maxExpandDistance = Screen.height;
+
+            var expandVector = touch0.position - expandTouchDown;
+            var expandDistance = expandVector.magnitude;
+
+            var dragPart = expandDistance / maxExpandDistance;
+
+            if (Vector2.Angle(explodeObject.GetExpandVectorInScreenSpace(), expandVector) < 90)
+            {
+                explodeObject.ExpandAll(dragPart);
+            }
+            else
+            {
+                explodeObject.ExpandAll(-dragPart);
+            }
+        }
+    }
+
+    private static bool AllTouchesAreInPhase(TouchPhase phase)
     {
         return Input.touches.All(touch => touch.phase == phase);
     }

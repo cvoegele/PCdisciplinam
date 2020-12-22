@@ -15,6 +15,7 @@ public class CameraMovement : MonoBehaviour
     private Vector3 originalViewDirection;
     private Vector3 movementStartPosition;
     private bool rotateCamera;
+    private bool moveCamera;
 
     public float rotationSpeed;
 
@@ -31,9 +32,12 @@ public class CameraMovement : MonoBehaviour
         SetDestination(startPosition, true);
     }
 
-    public void SetDestination(Vector3 cameraDestination, bool rotateCamera, bool offsetEnabled = false)
+    public void SetDestination(Vector3 cameraDestination, bool rotateCamera, bool moveCamera = true,
+        bool offsetEnabled = false)
     {
+        this.moveCamera = moveCamera;
         this.rotateCamera = rotateCamera;
+
         if (offsetEnabled)
         {
             var offset = (startPosition - cameraDestination).normalized;
@@ -44,8 +48,9 @@ public class CameraMovement : MonoBehaviour
         {
             this.destination = cameraDestination;
         }
-        
+
         movementStartPosition = transform.position;
+        
         tick = 0f;
         StartCoroutine(nameof(MoveAndRotate));
     }
@@ -68,6 +73,7 @@ public class CameraMovement : MonoBehaviour
     {
         while (tick < movementTime)
         {
+            tick += Time.deltaTime;
             if (rotateCamera)
             {
                 Vector3 targetDirection = destination - transform.position;
@@ -76,17 +82,19 @@ public class CameraMovement : MonoBehaviour
                 {
                     targetDirection = originalViewDirection;
                 }
-
-                var singleRotationStep = rotationSpeed * Time.deltaTime;
+                var singleRotationStep = movementTime * Time.deltaTime;
                 var newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleRotationStep, 0f);
                 transform.rotation = Quaternion.LookRotation(newDirection);
             }
 
-            //move camera
-            tick += Time.deltaTime;
-            var moveThisFrame = Vector3.Lerp(movementStartPosition, destination, tick / movementTime);
-            transform.position = moveThisFrame;
+            if (moveCamera)
+            {
+                //move camera
+                var moveThisFrame = Vector3.Lerp(movementStartPosition, destination, tick / movementTime);
+                transform.position = moveThisFrame;
+            }
             yield return null;
         }
     }
+    
 }

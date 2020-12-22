@@ -21,16 +21,14 @@
   <component name="ChangeListManager">
     <list default="true" id="6f7bbc06-876c-4722-b149-ad188366e81f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Outline.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Outline.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Interactions.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Interactions.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DetectTouchMovement.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DetectTouchMovement.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ExplodeObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ExplodeObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exploder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exploder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Selector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +39,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Assets/CameraMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ExplodeObject.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Selector.cs" />
-      </list>
-    </option>
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Assets/Scripts/Exploder.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Selector.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ExplodeObject.cs" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="1k6GP02hwxx1xtwM6PG5EuqvsPp" />
   <component name="ProjectViewState">
@@ -80,21 +76,21 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="11368">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="11368" />
+      <option name="pid" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="11368">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="11368" />
+      <option name="pid" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -109,7 +105,8 @@
       <updated>1605013601874</updated>
       <workItem from="1605013607749" duration="4084000" />
       <workItem from="1605111476920" duration="660000" />
-      <workItem from="1608550355716" duration="11858000" />
+      <workItem from="1608550355716" duration="18221000" />
+      <workItem from="1608633246348" duration="11175000" />
     </task>
     <servers />
   </component>
@@ -128,78 +125,9 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="2012" height="323" key="GridCell.Tab.0.bottom" timestamp="1608568031224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031224" />
-    <state width="2012" height="323" key="GridCell.Tab.0.center" timestamp="1608568031223">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031223" />
-    <state width="2012" height="323" key="GridCell.Tab.0.left" timestamp="1608568031223">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031223" />
-    <state width="2012" height="323" key="GridCell.Tab.0.right" timestamp="1608568031224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031224" />
-    <state width="2012" height="323" key="GridCell.Tab.1.bottom" timestamp="1608568031224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.1.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031224" />
-    <state width="2012" height="323" key="GridCell.Tab.1.center" timestamp="1608568031224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.1.center/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031224" />
-    <state width="2012" height="323" key="GridCell.Tab.1.left" timestamp="1608568031224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.1.left/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031224" />
-    <state width="2012" height="323" key="GridCell.Tab.1.right" timestamp="1608568031224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031224" />
-    <state width="2012" height="323" key="GridCell.Tab.2.bottom" timestamp="1608568031224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.2.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031224" />
-    <state width="2012" height="323" key="GridCell.Tab.2.center" timestamp="1608568031224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.2.center/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031224" />
-    <state width="2012" height="323" key="GridCell.Tab.2.left" timestamp="1608568031224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.2.left/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031224" />
-    <state width="2012" height="323" key="GridCell.Tab.2.right" timestamp="1608568031224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.2.right/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031224" />
-    <state width="2012" height="323" key="GridCell.Tab.3.bottom" timestamp="1608568031225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.3.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031225" />
-    <state width="2012" height="323" key="GridCell.Tab.3.center" timestamp="1608568031225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.3.center/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031225" />
-    <state width="2012" height="323" key="GridCell.Tab.3.left" timestamp="1608568031225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.3.left/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031225" />
-    <state width="2012" height="323" key="GridCell.Tab.3.right" timestamp="1608568031225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2012" height="323" key="GridCell.Tab.3.right/0.0.3440.1400@0.0.3440.1400" timestamp="1608568031225" />
-    <state x="1685" y="325" width="672" height="678" key="search.everywhere.popup" timestamp="1605014267142">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state x="1685" y="325" width="672" height="678" key="search.everywhere.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1605014267142" />
   </component>
 </project>

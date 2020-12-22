@@ -38,29 +38,22 @@ public class Exploder : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Expand();
+            Expand(0.1f);
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Collapse();
+            Expand(-0.1f);
         }
     }
 
-    public void Expand()
+    public void Expand(float f)
     {
         foreach (var explod in explodies)
         {
-            explod.Expand();
+            explod.Expand(f);
         }
     }
-
-    public void Collapse()
-    {
-        foreach (var explod in explodies)
-        {
-            explod.Collapse();
-        }
-    }
+    
 
     private void OnDrawGizmos()
     {
