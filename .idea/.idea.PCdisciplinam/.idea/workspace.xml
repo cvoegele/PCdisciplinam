@@ -20,15 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f7bbc06-876c-4722-b149-ad188366e81f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Interactions.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Interactions.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ExplodeObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ExplodeObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exploder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exploder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Selector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,12 +32,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2DB13BA0-D523-4322-8AA9-892C408FB49A/f2/2c4077d1/Input.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/Exploder.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ExplodeObject.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Selector.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ExplodeObject.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1k6GP02hwxx1xtwM6PG5EuqvsPp" />
@@ -106,7 +103,7 @@
       <workItem from="1605013607749" duration="4084000" />
       <workItem from="1605111476920" duration="660000" />
       <workItem from="1608550355716" duration="18221000" />
-      <workItem from="1608633246348" duration="11175000" />
+      <workItem from="1608633246348" duration="17985000" />
     </task>
     <servers />
   </component>
