@@ -8,8 +8,6 @@ public class Selector : MonoBehaviour
 {
     private CameraMovement cameraMovement;
     private GameObject selection;
-    public Material selectionMaterial;
-    public Material oldMaterial;
 
     private Vector2 touch0Down = Vector2.zero;
     private Vector2 touch1Down = Vector2.zero;
@@ -84,7 +82,7 @@ public class Selector : MonoBehaviour
                         var position = hit.rigidbody.position;
                         var newHitPosition = position;
 
-                        cameraMovement.SetDestination(newHitPosition, true, false);
+                        cameraMovement.SetDestination(newHitPosition,true, false);
                     }
                     else
                     {
@@ -116,6 +114,7 @@ public class Selector : MonoBehaviour
             if (dot > 0)
             {
                 //fingers move into somewhat the same direction
+                
             }
             else
             {
@@ -195,26 +194,17 @@ public class Selector : MonoBehaviour
 
     private void TurnOnSelectionMaterial()
     {
-        var renderer = selection.GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            oldMaterial = renderer.material;
-            oldMaterial.SetColor("_EmissionColor", Color.white);
-            //renderer.material = selectionMaterial;
-        }
+        var outline = selection.AddComponent<Outline>();
+
+        outline.OutlineMode = Outline.Mode.OutlineAll;
+        outline.OutlineColor = Color.white;
+        outline.OutlineWidth = 10f;
     }
 
     private void TurnOffSelectionMaterial()
     {
         if (selection == null) return;
-
-        var renderer = selection.GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            // renderer.material = oldMaterial;
-            // oldMaterial = null;
-            oldMaterial = renderer.material;
-            oldMaterial.SetColor("_EmissionColor", Color.black);
-        }
+        Destroy(selection.GetComponent<Outline>());
+        
     }
 }
