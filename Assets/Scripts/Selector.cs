@@ -199,7 +199,8 @@ public class Selector : MonoBehaviour
         if (renderer != null)
         {
             oldMaterial = renderer.material;
-            renderer.material = selectionMaterial;
+            oldMaterial.SetColor("_EmissionColor", Color.white);
+            //renderer.material = selectionMaterial;
         }
     }
 
@@ -210,8 +211,10 @@ public class Selector : MonoBehaviour
         var renderer = selection.GetComponent<Renderer>();
         if (renderer != null)
         {
-            renderer.material = oldMaterial;
-            oldMaterial = null;
+            // renderer.material = oldMaterial;
+            // oldMaterial = null;
+            oldMaterial = renderer.material;
+            oldMaterial.SetColor("_EmissionColor", Color.black);
         }
     }
 }
