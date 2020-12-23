@@ -82,7 +82,7 @@ public class CameraMovement : MonoBehaviour
                 {
                     targetDirection = originalViewDirection;
                 }
-                var singleRotationStep = movementTime * Time.deltaTime;
+                var singleRotationStep = tick / movementTime;
                 var newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleRotationStep, 0f);
                 transform.rotation = Quaternion.LookRotation(newDirection);
             }

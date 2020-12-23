@@ -29,7 +29,6 @@ public class Selector : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-
         if (Input.touchCount == 3)
         {
             DeSelect();
@@ -38,7 +37,7 @@ public class Selector : MonoBehaviour
         //two finger movement
         else if (Input.touchCount == 2)
         {
-            TwoFingerZoom();
+            ClassifyTwoFingerInput();
         }
         else if (Input.touchCount == 1)
         {
@@ -97,7 +96,7 @@ public class Selector : MonoBehaviour
         }
     }
 
-    private void TwoFingerZoom()
+    private void ClassifyTwoFingerInput()
     {
         var touch0 = Input.touches[0];
         var touch1 = Input.touches[1];
@@ -110,23 +109,40 @@ public class Selector : MonoBehaviour
 
         if (AllTouchesAreInPhase(TouchPhase.Moved))
         {
-            var downDelta = (touch0Down - touch1Down).magnitude;
-            var delta = (touch0.position - touch1.position).magnitude;
+            var move0 = touch0.position - touch0Down;
+            var move1 = touch1.position - touch1Down;
+            var dot = Vector2.Dot(move0.normalized, move1.normalized);
 
-            if (downDelta > delta)
+            if (dot > 0)
             {
-                var amount = delta / downDelta;
-                cameraMovement.Move(-amount);
+                //fingers move into somewhat the same direction
             }
-            else if (downDelta < delta)
+            else
             {
-                var amount = downDelta / delta;
-                cameraMovement.Move(amount);
+                //fingers do not move in the same direction
+                TwoFingerZoom(touch0, touch1);
             }
-
-            touch0Down = touch0.position;
-            touch1Down = touch1.position;
         }
+    }
+
+    private void TwoFingerZoom(Touch touch0, Touch touch1)
+    {
+        var downDelta = (touch0Down - touch1Down).magnitude;
+        var delta = (touch0.position - touch1.position).magnitude;
+
+        if (downDelta > delta)
+        {
+            var amount = delta / downDelta;
+            cameraMovement.Move(-amount);
+        }
+        else if (downDelta < delta)
+        {
+            var amount = downDelta / delta;
+            cameraMovement.Move(amount);
+        }
+
+        touch0Down = touch0.position;
+        touch1Down = touch1.position;
     }
 
     private void FingerDragExpand()
