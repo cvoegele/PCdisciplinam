@@ -17,6 +17,7 @@ public class CameraMovement : MonoBehaviour
     private bool rotateCamera;
     private bool moveCamera;
 
+
     public float rotationSpeed;
 
     private void Start()
@@ -29,12 +30,22 @@ public class CameraMovement : MonoBehaviour
 
     public void ResetCamera()
     {
-        SetDestination(startPosition, true);
+        SetDestination(startPosition, Vector3.zero, true);
     }
 
-    public void SetDestination(Vector3 cameraDestination, bool rotateCamera, bool moveCamera = true,
+    public void SetDestination(Vector3 cameraDestination, Vector3? lookAt, bool rotateCamera, bool moveCamera = true,
         bool offsetEnabled = false)
     {
+        //set lookAt position in parent without moving the camera, so we can later rotate around it
+        if  (lookAt is Vector3 lA)
+        {
+            transform.parent.localRotation = Quaternion.identity;
+            var oldParentPosition = transform.parent.position;
+            transform.parent.position = lA;
+            var difference = transform.parent.position - oldParentPosition;
+            transform.localPosition -= difference;
+        }
+        
         this.moveCamera = moveCamera;
         this.rotateCamera = rotateCamera;
 
@@ -50,7 +61,7 @@ public class CameraMovement : MonoBehaviour
         }
 
         movementStartPosition = transform.position;
-        
+
         tick = 0f;
         StartCoroutine(nameof(MoveAndRotate));
     }
@@ -66,8 +77,22 @@ public class CameraMovement : MonoBehaviour
         var isMovementBackwards = amount < 0;
         var targetDirection = transform.forward;
         var target = targetDirection * amount;
-        SetDestination(transform.position + target, !isMovementBackwards);
+        SetDestination(transform.position + target, null, !isMovementBackwards);
     }
+
+    public void RotateAroundLookAt(Vector3 axis)
+    {
+        // var cos = Mathf.Cos(angle);
+        // var cosInv = Mathf.Cos(-angle);
+        // var sin = Mathf.Cos(angle);
+        // var sinInv = Mathf.Cos(-angle);
+        // var q = new Quaternion(cos, sin * axis.x, sin * axis.y, sin * axis.z);
+        // var qInvesere = new Quaternion(cosInv, sinInv * axis.x, sinInv * axis.y, sinInv * axis.z);
+        // var p = transform.parent.rotation;
+        transform.parent.localRotation *= Quaternion.Euler(axis).normalized;
+    }
+    
+    
 
     IEnumerator MoveAndRotate()
     {
@@ -82,6 +107,7 @@ public class CameraMovement : MonoBehaviour
                 {
                     targetDirection = originalViewDirection;
                 }
+
                 var singleRotationStep = tick / movementTime;
                 var newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleRotationStep, 0f);
                 transform.rotation = Quaternion.LookRotation(newDirection);
@@ -93,8 +119,8 @@ public class CameraMovement : MonoBehaviour
                 var moveThisFrame = Vector3.Lerp(movementStartPosition, destination, tick / movementTime);
                 transform.position = moveThisFrame;
             }
+
             yield return null;
         }
     }
-    
 }

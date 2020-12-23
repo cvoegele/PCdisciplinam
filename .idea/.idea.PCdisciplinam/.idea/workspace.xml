@@ -20,24 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f7bbc06-876c-4722-b149-ad188366e81f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/case.blend" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/case.blend" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Interactions.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Interactions.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Selector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UniversalRenderPipelineAsset.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UniversalRenderPipelineAsset.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UniversalRenderPipelineAsset_Renderer.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UniversalRenderPipelineAsset_Renderer.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/emissive.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/emissive.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,8 +41,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/ExplodeObject.cs" />
       <option value="$PROJECT_DIR$/Assets/QuickOutline/Scripts/Outline.cs" />
       <option value="$PROJECT_DIR$/Assets/Outline.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Selector.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Selector.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1k6GP02hwxx1xtwM6PG5EuqvsPp" />
@@ -121,7 +106,7 @@
       <workItem from="1605111476920" duration="660000" />
       <workItem from="1608550355716" duration="18221000" />
       <workItem from="1608633246348" duration="17985000" />
-      <workItem from="1608719151605" duration="6987000" />
+      <workItem from="1608719151605" duration="14348000" />
     </task>
     <servers />
   </component>

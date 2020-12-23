@@ -82,7 +82,7 @@ public class Selector : MonoBehaviour
                         var position = hit.rigidbody.position;
                         var newHitPosition = position;
 
-                        cameraMovement.SetDestination(newHitPosition,true, false);
+                        cameraMovement.SetDestination(newHitPosition, newHitPosition, true, false);
                     }
                     else
                     {
@@ -114,7 +114,10 @@ public class Selector : MonoBehaviour
             if (dot > 0)
             {
                 //fingers move into somewhat the same direction
-                
+                var movement = new Vector3(move0.y, move0.x, 0) * .5f;
+                cameraMovement.RotateAroundLookAt(movement);
+                touch0Down = touch0.position;
+                touch1Down = touch1.position;
             }
             else
             {
@@ -205,6 +208,5 @@ public class Selector : MonoBehaviour
     {
         if (selection == null) return;
         Destroy(selection.GetComponent<Outline>());
-        
     }
 }
