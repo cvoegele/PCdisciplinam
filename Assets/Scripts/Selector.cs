@@ -12,9 +12,8 @@ public class Selector : MonoBehaviour
     private Vector2 touch0Down = Vector2.zero;
     private Vector2 touch1Down = Vector2.zero;
     private Vector2 expandTouchDown = Vector2.zero;
-    private float oldExpandDistance;
-    private float oldExpandDelta;
     private Camera mainCamera;
+    private SelectionState selectionState;
 
 
     // Start is called before the first frame update
@@ -79,13 +78,16 @@ public class Selector : MonoBehaviour
                     //press same object again
                     if (selection == hit.rigidbody.gameObject)
                     {
+                       
                         var position = hit.rigidbody.position;
                         var newHitPosition = position;
 
-                        cameraMovement.SetDestination(newHitPosition, newHitPosition, true, false);
+                        cameraMovement.SetRotationPoint(newHitPosition);
+                        cameraMovement.SetDestination(newHitPosition, true, false);
                     }
                     else
                     {
+
                         //press something else
                         Select(hit.transform.gameObject);
                     }
@@ -107,20 +109,40 @@ public class Selector : MonoBehaviour
 
         if (AllTouchesAreInPhase(TouchPhase.Moved))
         {
+
             var move0 = touch0.position - touch0Down;
             var move1 = touch1.position - touch1Down;
             var dot = Vector2.Dot(move0.normalized, move1.normalized);
 
             if (dot > 0)
             {
+
+                if (selectionState == SelectionState.Scaling)
+                {
+                    touch0Down = touch0.position;
+                    touch1Down = touch1.position;
+                    selectionState = SelectionState.Rotating;
+                    return;
+                }
+
                 //fingers move into somewhat the same direction
-                var movement = new Vector3(move0.y, move0.x, 0) * .5f;
+                var movement = new Vector3(move0.y, move0.x, 0).normalized;
                 cameraMovement.RotateAroundLookAt(movement);
                 touch0Down = touch0.position;
                 touch1Down = touch1.position;
+                selectionState = SelectionState.Rotating;
             }
             else
             {
+                if (selectionState == SelectionState.Rotating)
+                {
+                    touch0Down = touch0.position;
+                    touch1Down = touch1.position;
+                    selectionState = SelectionState.Scaling;
+                    return;
+                }
+
+                selectionState = SelectionState.Scaling;
                 //fingers do not move in the same direction
                 TwoFingerZoom(touch0, touch1);
             }
@@ -129,6 +151,9 @@ public class Selector : MonoBehaviour
 
     private void TwoFingerZoom(Touch touch0, Touch touch1)
     {
+
+        
+
         var downDelta = (touch0Down - touch1Down).magnitude;
         var delta = (touch0.position - touch1.position).magnitude;
 
@@ -209,4 +234,10 @@ public class Selector : MonoBehaviour
         if (selection == null) return;
         Destroy(selection.GetComponent<Outline>());
     }
+}
+
+public enum SelectionState
+{
+    Rotating,
+    Scaling
 }
