@@ -21,8 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="6f7bbc06-876c-4722-b149-ad188366e81f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PCdisciplinam/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Interactions.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Interactions.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Selector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +108,8 @@
       <workItem from="1605111476920" duration="660000" />
       <workItem from="1608550355716" duration="18221000" />
       <workItem from="1608633246348" duration="17985000" />
-      <workItem from="1608719151605" duration="14348000" />
+      <workItem from="1608719151605" duration="16685000" />
+      <workItem from="1609153540926" duration="3000" />
     </task>
     <servers />
   </component>

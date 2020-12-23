@@ -11,9 +11,12 @@ public class CameraMovement : MonoBehaviour
     public Vector3 initialDestination;
 
     private float tick;
+    private float parentTick;
     private Vector3 destination;
     private Vector3 originalViewDirection;
     private Vector3 movementStartPosition;
+    private Quaternion parentRotation;
+    private Quaternion startRotation;
     private bool rotateCamera;
     private bool moveCamera;
 
@@ -30,22 +33,14 @@ public class CameraMovement : MonoBehaviour
 
     public void ResetCamera()
     {
-        SetDestination(startPosition, Vector3.zero, true);
+        SetRotationPoint(Vector3.zero);
+        SetDestination(startPosition, true);
     }
 
-    public void SetDestination(Vector3 cameraDestination, Vector3? lookAt, bool rotateCamera, bool moveCamera = true,
+    public void SetDestination(Vector3 cameraDestination, bool rotateCamera, bool moveCamera = true,
         bool offsetEnabled = false)
     {
-        //set lookAt position in parent without moving the camera, so we can later rotate around it
-        if  (lookAt is Vector3 lA)
-        {
-            transform.parent.localRotation = Quaternion.identity;
-            var oldParentPosition = transform.parent.position;
-            transform.parent.position = lA;
-            var difference = transform.parent.position - oldParentPosition;
-            transform.localPosition -= difference;
-        }
-        
+
         this.moveCamera = moveCamera;
         this.rotateCamera = rotateCamera;
 
@@ -74,25 +69,47 @@ public class CameraMovement : MonoBehaviour
      */
     public void Move(float amount)
     {
-        var isMovementBackwards = amount < 0;
-        var targetDirection = transform.forward;
+        var targetDirection = transform.parent.position - transform.position;
         var target = targetDirection * amount;
-        SetDestination(transform.position + target, null, !isMovementBackwards);
+        SetDestination(transform.position + target, false);
+    }
+
+    /// <summary>
+    /// Set's transform of parent to certain point in world scape, so that the camera can later "rotate around" it.
+    /// </summary>
+    /// <param name="point"></param>
+    public void SetRotationPoint(Vector3 point)
+    {
+        transform.parent.localRotation = Quaternion.identity;
+        var oldParentPosition = transform.parent.position;
+        transform.parent.position = point;
+        var difference = transform.parent.position - oldParentPosition;
+        transform.localPosition -= difference;
     }
 
     public void RotateAroundLookAt(Vector3 axis)
     {
-        // var cos = Mathf.Cos(angle);
-        // var cosInv = Mathf.Cos(-angle);
-        // var sin = Mathf.Cos(angle);
-        // var sinInv = Mathf.Cos(-angle);
-        // var q = new Quaternion(cos, sin * axis.x, sin * axis.y, sin * axis.z);
-        // var qInvesere = new Quaternion(cosInv, sinInv * axis.x, sinInv * axis.y, sinInv * axis.z);
-        // var p = transform.parent.rotation;
-        transform.parent.localRotation *= Quaternion.Euler(axis).normalized;
+        parentTick = 0;
+        parentRotation = Quaternion.Euler(axis).normalized;
+        startRotation = transform.parent.rotation;
+        //var rotation = Quaternion.Lerp(startRotation, parentRotation, Time.deltaTime);
+        transform.parent.localRotation *= parentRotation;
+        //StartCoroutine(nameof(RotateParent));
+
     }
-    
-    
+
+    IEnumerator RotateParent()
+    {
+        while (parentTick < movementTime)
+        {
+            parentTick += Time.deltaTime;
+            var rotation = Quaternion.Lerp(startRotation, parentRotation, parentTick / movementTime);
+            transform.parent.localRotation = startRotation * rotation;
+            yield return null;
+        }
+    }
+
+
 
     IEnumerator MoveAndRotate()
     {
@@ -109,7 +126,8 @@ public class CameraMovement : MonoBehaviour
                 }
 
                 var singleRotationStep = tick / movementTime;
-                var newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleRotationStep, 0f);
+                var forward = transform.parent.position - movementStartPosition;
+                var newDirection = Vector3.RotateTowards(forward.normalized, targetDirection, singleRotationStep, 0f);
                 transform.rotation = Quaternion.LookRotation(newDirection);
             }
 
