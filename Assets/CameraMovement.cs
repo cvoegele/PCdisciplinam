@@ -33,18 +33,14 @@ public class CameraMovement : MonoBehaviour
             {
                 if (hit.rigidbody != null)
                 {
-                    Debug.Log(hit.rigidbody.name);
+                    Debug.Log("GameObject: " + hit.rigidbody.name);
                     if (GameObject.FindWithTag(hit.rigidbody.name) != null)
                     {
-                        Debug.Log("I'm in");
                         Text label = GameObject.FindWithTag(hit.rigidbody.name).GetComponent<Text>();
-                        Debug.Log(label.enabled);
-                        if (zooming)
+                        Debug.Log("Label enabled: " + label.enabled);
+                        if (label.enabled == false)
                         {
-                            label.enabled = false;
-                        }
-                        else
-                        {
+                            Debug.Log("Text enabled");
                             label.enabled = true;
                         }
                     }
@@ -52,7 +48,6 @@ public class CameraMovement : MonoBehaviour
                     if (hitObjectPosition != newHitPosition)
                     {
                         hitObjectPosition = newHitPosition;
-                        Debug.Log($"{hitObjectPosition}");
                         var direction = (startPosition - hitObjectPosition).normalized;
                         direction.Scale(new Vector3(minDistance, minDistance, minDistance));
                         moveTo = hitObjectPosition + direction;
@@ -62,6 +57,19 @@ public class CameraMovement : MonoBehaviour
             }
             else
             {
+                GameObject[] objects = GameObject.FindGameObjectsWithTag("Object");
+                foreach (GameObject part in objects){
+                    Debug.Log("GameObject from Array: " + part);
+                    Text text = GameObject.FindWithTag(part.name).GetComponent<Text>();
+                    Debug.Log("Text from GameObject: " + text);
+                    if (text != null)
+                    {
+                        if (text.enabled == true)
+                        {
+                            text.enabled = false;
+                        }
+                    }
+                }
                 hitObjectPosition = startPosition;
                 Debug.Log("i hit nothing");
                 moveTo = startPosition;
